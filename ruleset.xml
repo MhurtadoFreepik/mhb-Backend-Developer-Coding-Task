@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<ruleset name="gr_phpcs_ruleset">
+  <description>The PSR2 coding standard and some additional rules</description>
+  <arg name="tab-width" value="4"/>
+  <arg name="report-width" value="200"/>
+  <arg name="encoding" value="utf-8"/>
+  <arg name="colors"/>
+
+  <rule ref="PSR2">
+    <!-- Allowed ControlStructure inline -->
+    <exclude name="Generic.ControlStructures.InlineControlStructure.NotAllowed"/>
+    <!-- Allowed ControlStructure with brace in newline -->
+    <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
+    <!-- Allowed else, elseif in new line -->
+    <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace"/>
+    <!-- Allowed else and try without space and open parenthesis -->
+    <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+    
+    <!-- Camelcase and ClassName -->
+    <exclude name="Squiz.Classes.ValidClassName.NotCamelCaps"/>
+    <exclude name="PSR1.Methods.CamelCapsMethodName.NotCamelCaps"/>
+    <exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
+    <exclude name="PSR2.Classes.ClassDeclaration"/>
+
+    <!-- Allowed more than one class per file -->
+    <exclude name="PSR1.Classes.ClassDeclaration.MultipleClasses"/>
+
+    <!-- Allowed UpperCase for Constants -->
+    <exclude name="Generic.PHP.LowerCaseConstant.Found"/>
+
+    <!-- Excluded paths -->
+    <exclude-pattern>*/views/*</exclude-pattern>
+    <exclude-pattern>*/third_party/*</exclude-pattern>
+  </rule>
+
+  <!-- Lines can be N chars long (warnings), errors at M chars -->
+  <rule ref="Generic.Files.LineLength">
+    <properties>
+      <property name="lineLimit" value="80"/>
+      <property name="absoluteLineLimit" value="500"/>
+    </properties>
+  </rule>
+</ruleset>
