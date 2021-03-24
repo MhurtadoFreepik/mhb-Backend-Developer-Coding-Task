@@ -45,14 +45,15 @@ class ViewCountryAction extends CountryAction
         $criteria = array(
             $codeService->getCriteriaName() => $codeService->evaluate(),
             $regionService->getCriteriaName() => $regionService->evaluate(),
-            $populationService->getCriteriaName() => $populationService->evaluate(),
+            $populationService->getCriteriaName() =>
+                $populationService->evaluate(),
             $rivalService->getCriteriaName() => $rivalService->evaluate(),
         );
         $strRes = $this->output($criteria);
         return $this->respondWithData($strRes);
     }
 
-    
+
     private function output(array $criteria) : string
     {
         $result = true;

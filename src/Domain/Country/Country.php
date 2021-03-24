@@ -60,6 +60,48 @@ class Country implements JsonSerializable
     }
 
     /**
+     * Set the value of population
+     *
+     * @param  int  $population
+     *
+     * @return  self
+     */
+    public function setPopulation(int $population)
+    {
+        $this->population = $population;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of region
+     *
+     * @param  string  $region
+     *
+     * @return  self
+     */
+    public function setRegion(string $region)
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of code
+     *
+     * @param  string|null  $code
+     *
+     * @return  self
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function jsonSerialize()
