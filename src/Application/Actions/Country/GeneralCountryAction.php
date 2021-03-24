@@ -13,7 +13,7 @@ class GeneralCountryAction extends CountryAction
     protected function action(): Response
     {
         $result = [];
-        $message = "use '/country-check/country-code'";
+        $message = "use '/country-check/{country-code}'";
         $result[] = $message;
 
         $this->logger->info("You need a param");

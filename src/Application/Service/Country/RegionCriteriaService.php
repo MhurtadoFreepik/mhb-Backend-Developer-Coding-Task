@@ -3,14 +3,35 @@ declare(strict_types=1);
 
 namespace App\Application\Service\Country;
 
+use App\Domain\Country\Country;
+
 class RegionCriteriaService extends CountryCriteriaService
 {
+    /**
+     * @var string $region
+     */
+    private string $region;
+
+
+    /**
+     * @param string $criteriaName
+     * @param Country $country
+     */
+    public function __construct(
+        string $criteriaName,
+        Country $country,
+        string $region
+    ) {
+        parent::__construct($criteriaName, $country);
+        $this->region = $region;
+    }
+
     /**
      * {@inheritdoc}
      */
     public function evaluate(): bool
     {
-        $vocals = array('a','e','i','o','u');
-        return in_array(substr($this->country->getCode(), 0, 1), $vocals);
+        return strtolower(parent::getCountry()->getRegion())
+            === strtolower($this->region);
     }
 }

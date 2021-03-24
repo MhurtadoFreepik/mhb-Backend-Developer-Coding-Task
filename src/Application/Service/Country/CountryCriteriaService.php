@@ -19,6 +19,7 @@ abstract class CountryCriteriaService
 
     /**
      * @param string $criteriaName
+     * @param Country $country
      */
     public function __construct(string $criteriaName, Country $country)
     {
@@ -30,4 +31,14 @@ abstract class CountryCriteriaService
      * @return bool
      */
     abstract public function evaluate() : bool;
+
+    public function getCriteriaName() : string
+    {
+        return $this->criteriaName;
+    }
+
+    public function getCountry() : Country
+    {
+        return $this->country;
+    }
 }
