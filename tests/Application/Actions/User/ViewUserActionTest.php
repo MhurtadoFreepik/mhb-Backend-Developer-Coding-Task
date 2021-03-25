@@ -30,7 +30,10 @@ class ViewUserActionTest extends TestCase
             ->willReturn($user)
             ->shouldBeCalledOnce();
 
-        $container->set(UserRepository::class, $userRepositoryProphecy->reveal());
+        $container->set(
+            UserRepository::class,
+            $userRepositoryProphecy->reveal()
+        );
 
         $request = $this->createRequest('GET', '/users/1');
         $response = $app->handle($request);
@@ -49,7 +52,10 @@ class ViewUserActionTest extends TestCase
         $callableResolver = $app->getCallableResolver();
         $responseFactory = $app->getResponseFactory();
 
-        $errorHandler = new HttpErrorHandler($callableResolver, $responseFactory);
+        $errorHandler = new HttpErrorHandler(
+            $callableResolver,
+            $responseFactory
+        );
         $errorMiddleware = new ErrorMiddleware($callableResolver, $responseFactory, true, false ,false);
         $errorMiddleware->setDefaultErrorHandler($errorHandler);
 
@@ -64,7 +70,10 @@ class ViewUserActionTest extends TestCase
             ->willThrow(new UserNotFoundException())
             ->shouldBeCalledOnce();
 
-        $container->set(UserRepository::class, $userRepositoryProphecy->reveal());
+        $container->set(
+            UserRepository::class,
+            $userRepositoryProphecy->reveal()
+        );
 
         $request = $this->createRequest('GET', '/users/1');
         $response = $app->handle($request);

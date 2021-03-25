@@ -31,7 +31,6 @@ class Country implements JsonSerializable
     {
         $this->code = $code;
         $this->region = strtolower($region);
-        //$this->region = ucfirst($this->region);
         $this->population = $population;
     }
 

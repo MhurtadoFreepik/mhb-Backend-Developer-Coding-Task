@@ -21,7 +21,7 @@ abstract class CountryAction extends Action
      */
     public function __construct(
         LoggerInterface $logger,
-        InMemoryCountryRepository $countryRepository
+        CountryRepository $countryRepository
     ) {
         parent::__construct($logger);
         $this->countryRepository = $countryRepository;

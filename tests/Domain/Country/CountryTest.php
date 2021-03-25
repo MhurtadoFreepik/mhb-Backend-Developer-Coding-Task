@@ -9,12 +9,14 @@ class CountryTest extends TestCase
 {
     protected array $countries;
     protected $mock;
-
+    
     public function setUp() : void
     {
         parent::setUpBeforeClass();
-        $mock = m::mock(Country::class);
-        $mock->setCode("es");
+        $this->mock = m::mock(Country::class);
+        $this->mock->shouldReceive("getCode")->andReturn("ES");
+        $this->mock->shouldReceive("getRegion")->andReturn("Europe");
+        $this->mock->shouldReceive("getPopulation")->andReturn(5000);
         // $this-> countries = [
         //             ["JP", "Asia", 126865000],
         //             ["ES", "Europe", 46439864],
@@ -29,7 +31,19 @@ class CountryTest extends TestCase
     }
     public function testGetCode()
     {
-        $this->mock->shouldReceive("setCode");
-        assertEquals("es", $this->mock->getCode());
+        $code = "ES";
+        TestCase::assertEquals($code, $this->mock->getCode());
+    }
+
+    public function testGetRegion()
+    {
+        $region = "Europe";
+        TestCase::assertEquals($region, $this->mock->getRegion());
+    }
+
+    public function testGetPopulation()
+    {
+        $population = 5000;
+        TestCase::assertEquals($population, $this->mock->getPopulation());
     }
 }

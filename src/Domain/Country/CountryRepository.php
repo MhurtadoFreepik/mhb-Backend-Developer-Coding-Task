@@ -6,18 +6,6 @@ namespace App\Domain\Country;
 interface CountryRepository
 {
     /**
-     * @return Country[]
-     */
-    public function findAll(): array;
-
-    /**
-     * @param string $id
-     * @return Country
-     * @throws CountryNotFoundException
-     */
-    public function findCountryOfId(string $id): Country;
-
-    /**
      * @param string $code
      * @return Country
      * @throws CountryNotFoundException

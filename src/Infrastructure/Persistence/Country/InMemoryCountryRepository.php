@@ -10,43 +10,6 @@ use App\Domain\Country\CountryRepository;
 class InMemoryCountryRepository implements CountryRepository
 {
     /**
-     * @var Country[]
-     */
-    private $countries;
-
-    /**
-     * InMemoryCountryRepository constructor.
-     *
-     * @param array|null $countries
-     */
-    public function __construct(array $countries = null)
-    {
-        $this->users = $countries ?? [
-            1 => new Country("es", "europe", 5000),
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function findAll(): array
-    {
-        return array_values($this->countries);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function findCountryOfId(string $id): Country
-    {
-        if (!isset($this->countries[$id])) {
-            throw new CountryNotFoundException();
-        }
-
-        return $this->countries[$id];
-    }
-
-    /**
      * {@inheritdoc}
     */
     public function fetchCountry(string $code) : Country
