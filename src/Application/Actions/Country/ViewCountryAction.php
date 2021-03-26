@@ -26,7 +26,7 @@ class ViewCountryAction extends CountryAction
         $populationService =new PopulationValuesCriteriaService();
         $rivalService = new RivalPopulationCriteriaService();
 
-        $criteria = array(
+        $criteria = [
             $codeService->getCriteriaName() =>
                 $codeService->evaluate($countryObject),
             $regionService->getCriteriaName() =>
@@ -35,7 +35,7 @@ class ViewCountryAction extends CountryAction
                 $populationService-> evaluate($countryObject, "Asia"),
             $rivalService->getCriteriaName() =>
                 $rivalService->evaluate($countryObject, "no"),
-        );
+        ];
         $strRes = $this->output($criteria);
         return $this->respondWithData($strRes);
     }
@@ -44,16 +44,16 @@ class ViewCountryAction extends CountryAction
     private function output(array $criteria) : string
     {
         $result = true;
-        $criteriaObj = array();
+        $criteriaObj = [];
         foreach ($criteria as $key => $value) {
             $result = $result && $value;
             $criteriaObj[$key] = $value;
         };
 
-        $objectRes = array(
+        $objectRes = [
             'result' => $result,
             'criteria' => $criteriaObj
-        );
+        ];
         $jsonRes = json_encode($objectRes);
         return $jsonRes;
     }
